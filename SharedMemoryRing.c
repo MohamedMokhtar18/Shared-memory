@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     right = (my_rank_sm + 1) % size_sm;
     left = (my_rank_sm - 1 + size_sm) % size_sm;
 
-    MPI_Win_allocate(sizeof(int), sizeof(int), MPI_INFO_NULL, comm_sm, &rcv_buf_ptr, &win);
+    MPI_Win_allocate_shared(sizeof(int), sizeof(int), MPI_INFO_NULL, comm_sm, &rcv_buf_ptr, &win);
 
     sum = 0;
     snd_buf = my_rank_sm;
