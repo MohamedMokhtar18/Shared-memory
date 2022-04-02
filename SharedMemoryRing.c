@@ -43,7 +43,8 @@ int main(int argc, char *argv[])
         /* *** The following 3 lines shall be substituted by
          *** 1-sided communication and synchronization    */
         MPI_Win_fence(0, win);
-        MPI_Put(&snd_buf, 1, MPI_INT, right, (MPI_Aint)0, 1, MPI_INT, win);
+        // MPI_Put(&snd_buf, 1, MPI_INT, right, (MPI_Aint)0, 1, MPI_INT, win);
+        *(rcv_buf_ptr + (right - my_rank_sm)) = snd_buf; // to store into right neighbor's rcv_buf
         MPI_Win_fence(0, win);
 
         snd_buf = *rcv_buf_ptr;
